@@ -11,6 +11,11 @@ from classes import Game
 # Because we need an app.
 app = Flask(__name__)
 
+# Game States
+PREGAME = 0
+PLAYING = 1
+ENDGAME = 2
+
 # All routes are defined here.
 
 @app.route("/create_game/<gamemode>/<name>/")
