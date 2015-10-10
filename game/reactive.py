@@ -1,7 +1,7 @@
 import requests
 from classes import Game, User
 from json import loads
-import assassins
+from assassins import Assassins
 from uuid import UUID
 
 LB_SERVER = "http://aws1.bitwisehero.com/"
