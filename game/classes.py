@@ -85,13 +85,19 @@ class Team:
     def subtract_score(self, score):
         self.score -= score
 
+# Game States
+PREGAME = 0
+PLAYING = 1
+ENDGAME = 2
+
 class Game:
     def __init__(self, name, id, gamemode):
         self.name = name
         self.id = id
-        self.on = True
+        self.state = PREGAME
         self.users = []
         self.teams = []
+        self.gamemode = gamemode
         
     def add_user(self, user):
         self.users.append(user.join_game(self))
@@ -111,4 +117,5 @@ class Game:
             team.leave_game()
         for user in self.users:
             self.remove_user(user)
-        self.on = False
+            user.leave_game()
+        self.state = ENDGAME

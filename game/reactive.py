@@ -9,7 +9,10 @@ def get_all_games():
     return games
 
 def get_game(id):
-    return games[id]
+    for gid in games:
+        if id == gid:
+            return games[gid]
+    return None
 
 def create_game(name, id, gamemode):
     game = Game(name, id, gamemode)
@@ -17,6 +20,3 @@ def create_game(name, id, gamemode):
 
 def destroy_game(id):
     del games[id]
-
-def get_game(id):
-    return games[id]

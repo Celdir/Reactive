@@ -10,7 +10,7 @@ class Assassins(Game):
     def __init__(self, name, id):
         self.name = name
         self.id = id
-        self.on = True
+        self.state = PREGAME
         self.gamemode = "assassins"
         self.users = []
         self.teams = []
@@ -20,6 +20,7 @@ class Assassins(Game):
         self.users[-1].alive = True
 
     def start_game(self):
+        self.state = PLAYING
         shuffle(self.users)
         for counter, user in enumerate(self.users):
             if counter == len(self.users)-1:

@@ -26,12 +26,16 @@ def end_game(uuid):
 def get_all_games():
     games = reactive.get_all_games()
     info = []
-    for (id, g) in games:
+    for key in games:
+        g = games[key]
+        users = []
+        for u in g.users:
+            users.append((u.name, str(u.id), u.current_score))
         info.append({
-            "uuid" : g.id,
+            "uuid" : str(g.id),
             "gamemode" : g.gamemode,
             "name" : g.name,
-            "users" : g.users,
+            "users" : users,
             "teams" : g.teams,
         })
     return dumps(info)
@@ -41,11 +45,14 @@ def get_game(uuid):
     g = reactive.get_game(uuid)
     if g == None:
         return "[]"
+    users = []
+    for u in g.users:
+        users.append((u.name, str(u.id), u.current_score))
     info = {
-        "uuid" : g.id,
+        "uuid" : str(g.id),
         "gamemode" : g.gamemode,
         "name" : g.name,
-        "users" : g.users,
+        "users" : users,
         "teams" : g.teams,
     }
     return dumps(info)
@@ -81,6 +88,18 @@ def join_game(username, uuid):
 @app.route("/leave_game/<username>/<uuid>/")
 def leave_game(username, uuid):
     pass
+
+# Assassins Specifc Routes
+
+@app.route("/assassins/target/<uuid>/<name>")
+def assassins_target(uuid, name):
+    g = reactive.get_game(uuid)
+    if g == None or g.gamemode != "assassins" or g.state != PLAYING:
+        return ""
+    for user in g.users:
+        if user == name:
+            return user.target.name
+    return ""
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)

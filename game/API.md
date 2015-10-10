@@ -70,3 +70,20 @@ Returns: empty list.
 Failure: user is not in game.
 Modifications: none.
 Returns: empty list.
+
+## Assassins Specific Methods ##
+
+### assassins/target/`uuid`/`name` ###
+
+Success: `uuid` is a valid game and `name` is a user in that game.
+Modification: none.
+Returns: Name of target for `name` in game `uuid`.
+
+Failure: `uuid` is not a game.
+Modifications: none.
+Returns: nothing.
+
+Failure: `name` is not in `uuid`.
+Modifications: none.
+Returns: nothing.
+
