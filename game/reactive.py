@@ -11,3 +11,6 @@ def create_game(name, id, gamemode):
 
 def destroy_game(id):
     del games_map[id]
+
+def get_game(id):
+    return games_map[id]

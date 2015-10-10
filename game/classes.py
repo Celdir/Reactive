@@ -1,5 +1,6 @@
 import flask
 import requests
+import reactive
 
 LB_SERVER = "http://aws1.bitwisehero.com/"
 
@@ -8,7 +9,6 @@ class User:
         self.name = name
         self.id = id
         self.clan = clan
-        self.clan.add_user(self)
         self.total_score = 0
         self.current_score = 0
     
@@ -20,19 +20,12 @@ class User:
 
     def add_score(self, score):
         self.current_score += score
-        url = LB_SERVER + "award_user_points/%s/%d" % (self.name, score)
-        response = requests.get(url)
-
-    def subtract_score(self, score):
-        self.current_score -= score
-    
+                
     def join_clan(self, clan):
-        self.leave_clan()
         self.clan = clan
-        self.clan.add_user(self)
 
     def leave_clan(self):
-        self.clan.remove_user(self)
+        self.clan = None
 
     def join_team(self, team):
         self.team = team
@@ -49,37 +42,14 @@ class User:
     # add current score to total score, set current score to 0, and leave the user's current game
     def leave_game(self):
         self.total_score += self.current_score
-        self.clan.add_score(self.current_score)
+        url = LB_SERVER + "award_user_points/%s/%d" % (self.name, self.current_score)
+        response = requests.get(url)
+        url = LB_SERVER + "award_clan_points/%s/%d" % (self.clan, self.current_score)
+        response = requests.get(url)
         self.current_score = 0
         self.game.remove_user(self)
         self.game = None
 
-class Clan:
-    def __init__(self, name, id):
-        self.name = name
-        self.id = id
-        self.users = []
-        self.gamemodes = []
-        self.score = 0
-
-    def add_user(self, user):
-        self.users.append(user)
-
-    def remove_user(self, user):
-        self.users.remove(user)
-
-    def add_gamemode(self, gamemode):
-        self.gamemodes.append(gamemode)
-
-    def set_score(self, score):
-        self.score = score
-
-    def add_score(self, score):
-        self.score += score
-    
-    def subtract_score(self, score):
-        self.score -= score
- 
 class Team:
     def __init__(self, name, id, game):
         self.name = name
@@ -147,4 +117,4 @@ class Game:
             team.leave_game()
         for user in self.users:
             user.leave_game()
-        destroy_game(self.id)
+        reactive.destroy_game(self.id)
