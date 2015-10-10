@@ -44,6 +44,7 @@ def get_all_games():
             "name" : g.name,
             "users" : users,
             "teams" : g.teams,
+            "active" : g.state == PLAYING
         })
     return dumps(info)
 
@@ -61,6 +62,7 @@ def get_game(uuid):
         "name" : g.name,
         "users" : users,
         "teams" : g.teams,
+        "active" : g.state == PLAYING
     }
     return dumps(info)
 
