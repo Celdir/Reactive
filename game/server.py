@@ -43,7 +43,7 @@ def get_all_games():
 
 @app.route("/get_game/<uuid>")
 def get_game(uuid):
-    g = reactive.get_game(uuid)
+    g = reactive.get_game(UUID(uuid))
     if g == None:
         return "[]"
     users = []

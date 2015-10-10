@@ -33,7 +33,7 @@ def get_game(id):
     return None
 
 def start_game(uuid):
-    game = get_game(UUID(id))
+    game = get_game(UUID(uuid))
     if game == None:
         return False
     game.start_game()
