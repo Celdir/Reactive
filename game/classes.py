@@ -103,7 +103,7 @@ class Game:
         self.users.append(user.join_game(self))
 
     def remove_user(self, user):
-        user.leave_game(self)
+        user.leave_game()
         self.users.remove(user)
 
     def add_team(self, team):

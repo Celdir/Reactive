@@ -47,3 +47,4 @@ def create_game(name, id, gamemode):
 
 def destroy_game(id):
     del games[id]
+
