@@ -64,7 +64,7 @@ Returns: empty list.
 
 ## Scoring ##
 
-### award_user_points/`username`/`points` ###
+### award_clan_points/`clanname`/`points` ###
 
 Success: clan exists.
 Modifications: adds `points` to the current score of `clanname`.
