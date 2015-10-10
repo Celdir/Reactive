@@ -15,6 +15,15 @@ def load_user(username):
     response = loads(resp.text)
     return User(response[0], UUID(response[1]), "none")
 
+def load_all_users():
+    url = LB_SERVER + "get_all_users"
+    resp = requests.get(url)
+    responses = loads(resp.text)
+    users = []
+    for response in responses:
+        users.append(User(response[0], UUID(response[1]), "none"))
+    return users
+
 def join_game(username, uuid):
     user = load_user(username)
     game = get_game(uuid)

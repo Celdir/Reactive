@@ -118,9 +118,8 @@ def start_game(uuid):
 # Hard Coded Sample Game
 def sample():
     reactive.create_game("Bob", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a', "assassins")
-    reactive.join_game("Josh", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
-    reactive.join_game("Randall", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
-    reactive.join_game("Michael", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
+    for user in reactive.load_all_users():
+        reactive.join_game(user.name, '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
 
 if __name__ == "__main__":
     sample()
