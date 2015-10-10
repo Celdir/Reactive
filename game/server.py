@@ -64,7 +64,7 @@ def get_sample_game(uuid):
 @app.route("/get_all_samples/")
 def get_all_samples():
     info = []
-    for i in [1..5]:
+    for i in [1,2,3,4,5]:
         info.append({
             "uuid" : g.id,
             "gamemode" : "assassins",
