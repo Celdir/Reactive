@@ -1,6 +1,8 @@
 import flask
 import requests
 
+LB_SERVER = "http://aws1.bitwisehero.com/"
+
 class User:
     def __init__(self, name, id, clan):
         self.name = name
@@ -18,6 +20,8 @@ class User:
 
     def add_score(self, score):
         self.current_score += score
+        url = LB_SERVER + "award_user_points/%s/%d" % (self.name, score)
+        response = requests.get(url)
 
     def subtract_score(self, score):
         self.current_score -= score
