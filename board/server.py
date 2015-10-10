@@ -1,6 +1,7 @@
 # Library imports.
 from flask import Flask
 from json import dumps
+from re import escape
 
 # Reactive imports.
 import database
@@ -14,6 +15,8 @@ app = Flask(__name__)
 
 @app.route("/add_user/<username>")
 def add_user(username):
+    # escape username
+    username = escape(username)
     result = database.add_user(username)
     if result == []:
         return "[]"
@@ -30,6 +33,8 @@ def get_all_users():
 
 @app.route("/get_user/<username>")
 def get_user(username):
+    # escape username
+    username = escape(username)
     result = database.get_user(username)
     if result == []:
         return "[]"
@@ -39,6 +44,8 @@ def get_user(username):
 
 @app.route("/add_clan/<clanname>")
 def add_clan(clanname):
+    # escape clanname
+    clanname = escape(clanname)
     result = database.add_clan(clanname)
     if result == []:
         return "[]"
@@ -55,6 +62,8 @@ def get_all_clans():
 
 @app.route("/get_clan/<clanname>")
 def get_clan(clanname):
+    # escape clanname
+    clanname = escape(clanname)
     result = database.get_clan(clanname)
     if result == []:
         return "[]"
@@ -64,6 +73,8 @@ def get_clan(clanname):
 
 @app.route("/award_user_points/<username>/<int:points>/")
 def award_user_points(username, points):
+    # escape username
+    username = escape(username)
     result = database.award_user_points(username, points)
     if result == []:
         return "[]"
@@ -71,6 +82,8 @@ def award_user_points(username, points):
 
 @app.route("/award_clan_points/<clanname>/<int:points>/")
 def award_clan_points(clanname, points):
+    # escape clanname
+    clanname = escape(clanname)
     result = database.award_clan_points(clanname, points)
     if result == []:
         return "[]"
