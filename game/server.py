@@ -74,36 +74,11 @@ def get_game_players(uuid):
         users.append((u.name, str(u.id), u.current_score, u.alive))
     return dumps(users)
 
-@app.route("/get_sample_game/<uuid>/")
-def get_sample_game(uuid):
-    info = {
-        "uuid" : uuid,
-        "gamemode" : "assassins",
-        "name" : "Just A Game",
-        "users" : ["frank", "steve", "yas"],
-        "teams" : []
-    }
-    return dumps(info)
-
-@app.route("/get_all_samples/")
-def get_all_samples():
-    info = []
-    for i in [1,2,3,4,5]:
-        info.append({
-            "uuid" : "x",
-            "gamemode" : "assassins",
-            "name" : "Just A Game",
-            "users" : ["frank", "steve", "yas"],
-            "teams" : []
-        })
-    return dumps(info)
-
 @app.route("/join_game/<username>/<uuid>/")
 def join_game(username, uuid):
     if reactive.join_game(username, uuid):
         return get_game(uuid)
     return ""
-    
 
 @app.route("/leave_game/<username>/<uuid>/")
 def leave_game(username, uuid):
@@ -111,16 +86,16 @@ def leave_game(username, uuid):
 
 # Assassins Specifc Routes
 
-@app.route("/assassins/kill/<uuid>/<name>/")
-def assassins_kill(uuid, name):
+@app.route("/assassins/kill/<uuid>/<killer>/<target>")
+def assassins_kill(uuid, killer, target):
     g = reactive.get_game(uuid)
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
         return "NOPE"
     for user in g.users:
-        if user.name == name:
+        if user.name == killer:
+            g.win(user.id)
+        if user.name == target:
             g.kill(user.id)
-            return "YAS"
-    return "NAH"
 
 @app.route("/assassins/target/<uuid>/<name>")
 def assassins_target(uuid, name):
