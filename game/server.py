@@ -106,7 +106,7 @@ def assassins_target(uuid, name):
         return "NOPE"
     for user in g.users:
         if user.name == name:
-            return user.target.name
+            return "\"%s\"" % user.target.name
     return "NAH"
 
 @app.route("/start_game/<uuid>")
