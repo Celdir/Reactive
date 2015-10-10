@@ -107,7 +107,7 @@ class Game:
 
     def remove_user(self, user):
         user.leave_game()
-        self.users.remove(user)
+        self.living.remove(user)
 
     def add_team(self, team):
         self.teams.append(team)
