@@ -17,7 +17,7 @@ def load_user(username):
 
 def join_game(username, uuid):
     user = load_user(username)
-    game = get_game(UUID(uuid))
+    game = get_game(uuid)
     if game == None:
         return False
     game.add_user(user)
@@ -27,19 +27,21 @@ def get_all_games():
     return games
 
 def get_game(id):
+    id = UUID(id)
     for gid in games:
         if id == gid:
             return games[gid]
     return None
 
 def start_game(uuid):
-    game = get_game(UUID(uuid))
+    game = get_game(uuid)
     if game == None:
         return False
     game.start_game()
     return True
 
 def create_game(name, id, gamemode):
+    id = UUID(id)
     game = Game(name, id, gamemode)
     games[id] = game
 

@@ -58,6 +58,16 @@ def get_game(uuid):
     }
     return dumps(info)
 
+@app.route("/get_game_players/<uuid>")
+def get_game_players(uuid):
+    g = reactive.get_game(UUID(uuid))
+    if g == None:
+        return "[]"
+    users = []
+    for u in g.users:
+        users.append((u.name, str(u.id), u.current_score, u.alive))
+    return dumps(users)
+
 @app.route("/get_sample_game/<uuid>/")
 def get_sample_game(uuid):
     info = {
@@ -105,11 +115,20 @@ def assassins_target(uuid, name):
             return user.target.name
     return ""
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80, debug=True)
-
 @app.route("/start_game/<uuid>")
 def start_game(uuid):
     if reactive.start_game(uuid):
         return get_game(uuid)
     return ""
+
+# Hard Coded Sample Game
+def sample():
+    reactive.create_game("Bob", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a', "assassins")
+    reactive.join_game("Josh", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
+    reactive.join_game("Randall", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
+    reactive.join_game("Michael", '7d59d944-b051-4b9c-bf9f-a3fd4c1c541a')
+
+if __name__ == "__main__":
+    sample()
+    app.run(host="0.0.0.0", port=80, debug=True)
+
