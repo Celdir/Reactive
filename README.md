@@ -1,5 +1,7 @@
 # Reactive
 
+A digital platform for live-action gaming.
+
 Developed at TAMUHack 2015. Made with love and crayons.
 
 Divided into three main parts.
