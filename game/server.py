@@ -125,11 +125,11 @@ def assassins_kill(uuid, name):
 def assassins_target(uuid, name):
     g = reactive.get_game(uuid)
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
-        return ""
+        return "NOPE"
     for user in g.users:
-        if user == name:
+        if user.name == name:
             return user.target.name
-    return ""
+    return "NAH"
 
 @app.route("/start_game/<uuid>")
 def start_game(uuid):
