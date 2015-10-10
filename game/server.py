@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/create_game/<gamemode>/<name>/")
 def create_game(gamemode, name):
-    uuid = uuid4()
+    uuid = str(uuid4())
     reactive.create_game(name, uuid, gamemode)
     return get_game(uuid)
 
@@ -43,7 +43,7 @@ def get_all_games():
 
 @app.route("/get_game/<uuid>")
 def get_game(uuid):
-    g = reactive.get_game(UUID(uuid))
+    g = reactive.get_game(uuid)
     if g == None:
         return "[]"
     users = []
@@ -60,7 +60,7 @@ def get_game(uuid):
 
 @app.route("/get_game_players/<uuid>")
 def get_game_players(uuid):
-    g = reactive.get_game(UUID(uuid))
+    g = reactive.get_game(uuid)
     if g == None:
         return "[]"
     users = []
@@ -105,9 +105,19 @@ def leave_game(username, uuid):
 
 # Assassins Specifc Routes
 
+@app.route("/assassins/kill/<uuid>/<name>/")
+def assassins_kill(uuid, name):
+    g = reactive.get_game(uuid)
+    if g == None or g.gamemode != "assassins" or g.state != PLAYING:
+        return ""
+    for user in g.users:
+        if user == name:
+            g.kill(user.id)
+    return ""
+
 @app.route("/assassins/target/<uuid>/<name>")
 def assassins_target(uuid, name):
-    g = reactive.get_game(UUID(uuid))
+    g = reactive.get_game(uuid)
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
         return ""
     for user in g.users:
