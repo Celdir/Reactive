@@ -7,6 +7,7 @@ from uuid import uuid4, UUID
 # Reactive imports
 import reactive
 from classes import Game
+from assassins import Assassins
 
 # Because we need an app.
 app = Flask(__name__)
