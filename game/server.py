@@ -15,8 +15,9 @@ app = Flask(__name__)
 
 @app.route("/create_game/<gamemode>/<name>/")
 def create_game(gamemode, name):
-    reactive.create_game(name, uuid4(), gamemode)
-    return "lol"
+    uuid = uuid4()
+    reactive.create_game(name, uuid, gamemode)
+    return get_game(uuid)
 
 @app.route("/end_game/<uuid>/")
 def end_game(uuid):
@@ -83,7 +84,10 @@ def get_all_samples():
 
 @app.route("/join_game/<username>/<uuid>/")
 def join_game(username, uuid):
-    pass
+    if reactive.join_game(username, uuid):
+        return get_game(uuid)
+    return ""
+    
 
 @app.route("/leave_game/<username>/<uuid>/")
 def leave_game(username, uuid):
