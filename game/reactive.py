@@ -32,6 +32,13 @@ def get_game(id):
             return games[gid]
     return None
 
+def start_game(uuid):
+    game = get_game(UUID(id))
+    if game == None:
+        return False
+    game.start_game()
+    return True
+
 def create_game(name, id, gamemode):
     game = Game(name, id, gamemode)
     games[id] = game

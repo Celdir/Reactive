@@ -108,3 +108,8 @@ def assassins_target(uuid, name):
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
 
+@app.route("/start_game/<uuid>")
+def start_game(uuid):
+    if reactive.start_game(uuid):
+        return get_game(uuid)
+    return ""
