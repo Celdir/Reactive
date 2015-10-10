@@ -6,6 +6,11 @@ from json import loads
 
 app = Flask(__name__)
 
+# Game States
+PREGAME = 0
+PLAYING = 1
+ENDGAME = 2
+
 class Assassins(Game):
     def __init__(self, name, id):
         self.name = name
