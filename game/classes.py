@@ -35,8 +35,9 @@ class User:
         self.team = None
 
     def join_game(self, game):
-        self.game = game
-        self.game.add_user(self)
+        u = User(self.name, self.id, self.clan)
+        u.game = game
+        return u
     
     # add current score to total score, set current score to 0, and leave the user's current game
     def leave_game(self):
@@ -46,7 +47,6 @@ class User:
         url = LB_SERVER + "award_clan_points/%s/%d" % (self.clan, self.current_score)
         response = requests.get(url)
         self.current_score = 0
-        self.game.remove_user(self)
         self.game = None
 
 class Team:
@@ -94,9 +94,10 @@ class Game:
         self.teams = []
         
     def add_user(self, user):
-        self.users.append(user)
+        self.users.append(user.join_game(self))
 
     def remove_user(self, user):
+        user.leave_game(self)
         self.users.remove(user)
 
     def add_team(self, team):
@@ -109,5 +110,5 @@ class Game:
         for team in self.teams:
             team.leave_game()
         for user in self.users:
-            user.leave_game()
+            self.remove_user(user)
         self.on = False

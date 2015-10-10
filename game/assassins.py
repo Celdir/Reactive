@@ -16,8 +16,8 @@ class Assassins(Game):
         self.teams = []
 
     def add_user(self, user):
-        user.alive = True
-        self.users.append(user)
+        self.users.append(user.join_game(self))
+        self.users[-1].alive = True
 
     def start_game(self):
         shuffle(self.users)
@@ -41,7 +41,7 @@ class Assassins(Game):
                     self.users[counter-1].target = self.users[0]
                 else: 
                     self.users[counter-1].target = self.users[counter+1]
-                user.leave_game()
+                self.remove_user(user)
 
         if len(self.users) == 1:
             self.game_over()
