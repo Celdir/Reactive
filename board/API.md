@@ -1,16 +1,16 @@
 # Proposed API #
 
-## add_user/<username> ##
+## add_user/`username` ##
 
 Success: user does not exist.
 Modifications: creates user in database with username, random UUID, and a score of 0.
-Returns: same as `get_user/<username>`.
+Returns: same as `get_user/username`.
 
 Failure: user already exists.
 Modifications: none.
 Returns: empty list.
 
-## get_user/<username> ##
+## get_user/`username` ##
 
 Success: user exists.
 Modifications: none.
