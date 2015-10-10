@@ -1,5 +1,10 @@
-from reactive import User, Team, Game, Clan
+from flask import Flask
+import requests
+from classes import User, Team, Game
 from random import shuffle
+from json import loads
+
+app = Flask(__name__)
 
 class Assassins(Game):
     def __init__(self, name, id):
@@ -38,4 +43,3 @@ class Assassins(Game):
 
         if len(self.users) == 1:
             self.game_over()
-
