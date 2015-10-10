@@ -50,6 +50,30 @@ def get_game(uuid):
     }
     return dumps(info)
 
+@app.route("/get_sample_game/<uuid>/")
+def get_sample_game(uuid):
+    info = {
+        "uuid" : g.id,
+        "gamemode" : "assassins",
+        "name" : "Just A Game",
+        "users" : ["frank", "steve", "yas"],
+        "teams" : []
+    }
+    return dumps(info)
+
+@app.route("/get_all_samples/")
+def get_all_samples():
+    info = []
+    for i in [1..5]:
+        info.append({
+            "uuid" : g.id,
+            "gamemode" : "assassins",
+            "name" : "Just A Game",
+            "users" : ["frank", "steve", "yas"],
+            "teams" : []
+        })
+    return dumps(info)
+
 @app.route("/join_game/<username>/<uuid>/")
 def join_game(username, uuid):
     pass
