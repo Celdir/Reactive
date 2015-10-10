@@ -2,6 +2,26 @@
 
 ## General Game Methods ##
 
+### create_game/`gamemode`/`name` ###
+
+Success: `gamemode` is valid.
+Modifications: creates game of type `gamemode` with name `name`.
+Returns: same as `get_game/uuid` of the newly created game.
+
+Failure: `gamemode` is invalid.
+Modifications: none.
+Returns: empty list.
+
+### end_game/`uuid` ###
+
+Success: `uuid` is a valid game.
+Modifications: ends game.
+Returns: empty list. *TODO FIX THIS*
+
+Failure: `uuid` is not a valid game.
+Modifications: none.
+Returns: empty list.
+
 ### get_all_games ###
 
 Success: always.

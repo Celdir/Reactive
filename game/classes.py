@@ -92,7 +92,7 @@ class Game:
         self.id = id
         self.users = []
         self.teams = []
-        get_gamemode(gamemode)
+        self.get_gamemode(gamemode)
         
     def get_gamemode(self, gamemode):
         if gamemode == "Assassins":
