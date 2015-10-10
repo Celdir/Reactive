@@ -83,3 +83,11 @@ Returns: same as `get_user/username`.
 Failure: user does not exist.
 Modifications: none.
 Returns: empty list.
+
+## Utility Methods ##
+
+### clear_all_records ##
+
+Success: always.
+Modifications: clears everything, yo.
+Returns: empty list.
