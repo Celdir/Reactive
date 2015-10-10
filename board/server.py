@@ -5,14 +5,6 @@ from json import dumps
 # Because we need an app.
 app = Flask(__name__)
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-
-QUERY_USER = """
-SELECT * FROM reactive.users WHERE name = '%s';
-"""
-
 @app.route("/add_user/<username>")
 def add_user(username):
     results = db_add_user(username)
