@@ -2,7 +2,7 @@
 from flask import Flask
 from json import dumps, loads
 from re import escape
-from uuid import uuid4
+from uuid import uuid4, UUID
 
 # Reactive imports
 import reactive
@@ -97,7 +97,7 @@ def leave_game(username, uuid):
 
 @app.route("/assassins/target/<uuid>/<name>")
 def assassins_target(uuid, name):
-    g = reactive.get_game(uuid)
+    g = reactive.get_game(UUID(uuid))
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
         return ""
     for user in g.users:
