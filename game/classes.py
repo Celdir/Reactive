@@ -96,11 +96,14 @@ class Game:
         self.id = id
         self.state = PREGAME
         self.users = []
+        self.living = []
         self.teams = []
         self.gamemode = gamemode
         
     def add_user(self, user):
-        self.users.append(user.join_game(self))
+        u = user.join_game(self)
+        self.users.append(u)
+        self.living.append(u)
 
     def remove_user(self, user):
         user.leave_game()

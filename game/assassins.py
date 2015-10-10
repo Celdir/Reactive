@@ -18,10 +18,13 @@ class Assassins(Game):
         self.state = PREGAME
         self.gamemode = "assassins"
         self.users = []
+        self.living = []
         self.teams = []
 
     def add_user(self, user):
-        self.users.append(user.join_game(self))
+        u = user.join_game(self)
+        self.users.append(u)
+        self.living.append(u)
         self.users[-1].alive = True
 
     def start_game(self):
@@ -40,13 +43,13 @@ class Assassins(Game):
                 return
 
     def kill(self, id):
-        for counter, user in enumerate(self.users):
+        for counter, user in enumerate(self.living):
             if user.id == id:
                 user.alive = False
-                if counter == len(self.users)-1:
-                    self.users[counter-1].target = self.users[0]
+                if counter == len(self.living)-1:
+                    self.living[counter-1].target = self.living[0]
                 else: 
-                    self.users[counter-1].target = self.users[counter+1]
+                    self.living[counter-1].target = self.living[counter+1]
                 self.remove_user(user)
 
         if len(self.users) == 1:
