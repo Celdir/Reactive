@@ -1,18 +1,23 @@
+# Library imports.
 from flask import Flask
-import database
 from json import dumps
+
+# Reactive imports.
+import database
 
 # Because we need an app.
 app = Flask(__name__)
 
+# All routes are defined here.
+
+# User Routes
+
 @app.route("/add_user/<username>")
 def add_user(username):
-    results = database.add_user(username)
-    processed = []
-    for result in results:
-        n = (result.name, str(result.id), result.score)
-        processed.append(n)
-    return dumps(processed)
+    result = database.add_user(username)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
 
 @app.route("/get_all_users/")
 def get_all_users():
@@ -25,12 +30,53 @@ def get_all_users():
 
 @app.route("/get_user/<username>")
 def get_user(username):
-    results = database.get_user(username)
+    result = database.get_user(username)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
+
+# Clan Routes
+
+@app.route("/add_clan/<clanname>")
+def add_clan(clanname):
+    result = database.add_clan(clanname)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
+
+@app.route("/get_all_clans/")
+def get_all_clans():
+    results = database.get_all_clans()
     processed = []
     for result in results:
         n = (result.name, str(result.id), result.score)
         processed.append(n)
     return dumps(processed)
+
+@app.route("/get_clan/<clanname>")
+def get_clan(clanname):
+    result = database.get_clan(clanname)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
+
+# Award Routes
+
+@app.route("/award_user_points/<username>/<int:points>/")
+def award_user_points(username, points):
+    result = database.award_user_points(username, points)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
+
+@app.route("/award_clan_points/<clanname>/<int:points>/")
+def award_clan_points(clanname, points):
+    result = database.award_clan_points(clanname, points)
+    if result == []:
+        return "[]"
+    return dumps((result.name, str(result.id), result.score))
+
+# Utility Routes
 
 @app.route("/clear_all_records/")
 def clear_all_records():
