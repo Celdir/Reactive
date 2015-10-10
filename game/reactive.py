@@ -42,7 +42,7 @@ def start_game(uuid):
 
 def create_game(name, id, gamemode):
     id = UUID(id)
-    game = Assassins(name, id, gamemode)
+    game = Assassins(name, id)
     games[id] = game
 
 def destroy_game(id):
