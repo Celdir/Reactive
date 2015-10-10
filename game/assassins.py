@@ -1,6 +1,6 @@
 from flask import Flask
 import requests
-from classes import User, Team, Game
+from classes import Game
 from random import shuffle
 from json import loads
 
@@ -10,6 +10,8 @@ class Assassins(Game):
     def __init__(self, name, id):
         self.name = name
         self.id = id
+        self.on = True
+        self.gamemode = "assassins"
         self.users = []
         self.teams = []
 

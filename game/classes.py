@@ -1,6 +1,5 @@
 import flask
 import requests
-import reactive
 
 LB_SERVER = "http://aws1.bitwisehero.com/"
 
@@ -90,16 +89,10 @@ class Game:
     def __init__(self, name, id, gamemode):
         self.name = name
         self.id = id
+        self.on = True
         self.users = []
         self.teams = []
-        self.get_gamemode(gamemode)
         
-    def get_gamemode(self, gamemode):
-        if gamemode == "Assassins":
-            self = Assassins(self.name, self.id)
-        else:
-            return ":("
-
     def add_user(self, user):
         self.users.append(user)
 
@@ -117,4 +110,4 @@ class Game:
             team.leave_game()
         for user in self.users:
             user.leave_game()
-        reactive.destroy_game(self.id)
+        self.on = False
