@@ -119,6 +119,7 @@ def assassins_kill(uuid, name):
     for user in g.users:
         if user.name == name:
             g.kill(user.id)
+            return "YAS"
     return "NAH"
 
 @app.route("/assassins/target/<uuid>/<name>")
