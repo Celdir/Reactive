@@ -25,22 +25,23 @@ class Assassins(Game):
         u = user.join_game(self)
         self.users.append(u)
         self.living.append(u)
-        self.users[-1].alive = True
+        self.living[-1].alive = True
 
     def start_game(self):
         self.state = PLAYING
-        shuffle(self.users)
-        for counter, user in enumerate(self.users):
-            if counter == len(self.users)-1:
-                self.users[counter].target = self.users[0]
+        shuffle(self.living)
+        for counter, user in enumerate(self.living):
+            if counter == len(self.living)-1:
+                self.living[counter].target = self.living[0]
             else:
-                self.users[counter].target = self.users[counter+1]
+                self.living[counter].target = self.living[counter+1]
 
     def win(self, id):
-        for user in self.users:
+        for user in self.living:
             if user.id == id:
                 user.add_score(1)
-                return
+                return True
+        return False
 
     def kill(self, id):
         for counter, user in enumerate(self.living):
@@ -52,5 +53,6 @@ class Assassins(Game):
                     self.living[counter-1].target = self.living[counter+1]
                 self.remove_user(user)
 
-        if len(self.users) == 1:
+        if len(self.living) == 1:
             self.game_over()
+

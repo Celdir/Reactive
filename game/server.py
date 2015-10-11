@@ -93,18 +93,30 @@ def assassins_kill(uuid, killer, target):
     g = reactive.get_game(uuid)
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
         return "NOPE"
-    for user in g.users:
+    found_killer = False
+    found_target = False
+    for user in g.living:
         if user.name == killer:
-            g.win(user.id)
+            found_killer = True
+            killer_ref = user
         if user.name == target:
-            g.kill(user.id)
+            found_target = True
+            target_ref = user
+    if found_killer and found_target:
+        g.win(killer_ref.id)
+        g.kill(target_ref.id)
+        return True
+    else
+        return False
+
+    
 
 @app.route("/assassins/target/<uuid>/<name>")
 def assassins_target(uuid, name):
     g = reactive.get_game(uuid)
     if g == None or g.gamemode != "assassins" or g.state != PLAYING:
         return "NOPE"
-    for user in g.users:
+    for user in g.living:
         if user.name == name:
             return "\"%s\"" % user.target.name
     return "NAH"
