@@ -21,13 +21,14 @@
 				<h2><a href="index.html" class="button special"><strong>Reactive</strong></a> </h2>
 				<p>Brought to you by us</p>
 				<ul class="actions">
-					<li><a href="login.html" class="button special">Sign Up</a></li>
+					<li><a href="login.html" class="button special">Sign Up or Login</a></li>
 					<li><a href="game_modes.html" class="button special">Game Modes</a></li>
-					
+					<li><a href="scoreboard.html" class="button special">Rankings</a></li>
 				</ul>
 			</section>
 
 			
+		
 
 		<!-- One -->
 

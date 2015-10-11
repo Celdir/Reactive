@@ -1,4 +1,8 @@
-<!DOCTYPE HTML>
+<?php
+
+
+
+?>
 <!--
 	Typify by TEMPLATED
 	templated.co @templatedco
@@ -15,48 +19,28 @@
 	</head>
 	<body>
 
+		
 
 		<!-- Banner -->
+
+		
 			<section id="banner">
 				<h2><a href="index.html" class="button special"><strong>Reactive</strong></a> </h2>
-				<p>Brought to you by us</p>
 				<ul class="actions">
-					<li><a href="login.html" class="button special">Sign Up</a></li>
-					<li><a href="game_modes.html" class="button special">Game Modes</a></li>
-					
 				</ul>
 			</section>
 
-			
-
 		<!-- One -->
-
-		<!--
 			<section id="one" class="wrapper special">
 				<div class="inner">
 					<header class="major">
-						<h2>Game Modes</h2>
+						<h2>Sign Up or Login</h2>
 					</header>
-					<div class="features">
-						<div class="feature">
-							<i class="fa fa-diamond"></i>
-							<h3>First Idea</h3>
-							<p>Information about first idea</p>
-						</div>
-						<div class="feature">
-							<i class="fa fa-copy"></i>
-							<h3>Second Idea</h3>
-							<p>Stuff about second idea</p>
-						</div>
-						<div class="feature">
-							<i class="fa fa-paper-plane-o"></i>
-							<h3>Who knows if we will get this far...</h3>
-							<p>....</p>
-						</div>
-						
-					</div>
+					
 				</div>
 			</section>
+
+
 
 		<!-- Two -->
 
@@ -87,21 +71,42 @@
 			</section>
 
 		<!-- Three -->
-		<!--
+		
 			<section id="three" class="wrapper">
 				<div class="inner">
 
-					<h2 id="content">Sample Content</h2>
-					<p>Praesent ac adipiscing ullamcorper semper ut amet ac risus. Lorem sapien ut odio odio nunc. Ac adipiscing nibh porttitor erat risus justo adipiscing adipiscing amet placerat accumsan. Vis. Faucibus odio magna tempus adipiscing a non. In mi primis arcu ut non accumsan vivamus ac blandit adipiscing adipiscing arcu metus praesent turpis eu ac lacinia nunc ac commodo gravida adipiscing eget accumsan ac nunc adipiscing adipiscing.</p>
-					<div class="row">
+						<div class="row">
 						<div class="6u 12u$(small)">
-							<h3>Sem turpis amet semper</h3>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer ornare praesent commodo adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<h2>First Time Users</h2>
+							<section class="loginform cf">
+								<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+								    <ul>
+								        <label for="usermail">Email</label>
+								        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
+								        <h2><a href="index.html" class="button special">Sign Up</a> </h2>
+								    </ul>
+								</form>
+							</section>
 						</div>
 						<div class="6u$ 12u$(small)">
-							<h3>Magna odio tempus commodo</h3>
-							<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor. Ante commodo blandit adipiscing integer semper orci eget. Faucibus commodo adipiscing mi eu nullam accumsan morbi arcu ornare odio mi adipiscing nascetur lacus ac interdum morbi accumsan vis mi accumsan ac praesent.</p>
+							<h2>Returning Users</h2>
+							<section class="loginform cf">
+								<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+								    <ul>
+								        <label for="usermail">Email</label>
+								        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
+								        <input type="submit" value="Login"></li>
+
+								    </ul>
+								</form>
+							</section>
+
 						</div>
+					</div>
+				</div>
+
+
+						<!--
 						<div class="4u 12u$(medium)">
 							<h3>Interdum sapien gravida</h3>
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>

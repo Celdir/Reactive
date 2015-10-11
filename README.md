@@ -10,6 +10,14 @@ Divided into three main parts.
 
 2. Leaderboard Server - Interfaces with Cassandra and stores state.
 
-3. Web Server - Serves the website itself.
+3. Web Server -  Literally static files and Javascript.
 
 Code should be put into directories appropriately.
+
+We make no promises about quality, nor effectiveness. Twas a good run.
+
+Requires Flask to function, using a wonderful web template from [TEMPLATED](http://templated.co).
+
+Released under MIT license.
+
+Thanks and Gig 'Em!

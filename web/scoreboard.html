@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<!--
+	Typify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Reactive</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		
+
+		<!-- Banner -->
+
+		
+			<section id="banner">
+				<h2><a href="index.html" class="button special"><strong>Reactive</strong></a> </h2>
+				<p>Brought to you by us</p>
+				<ul class="actions">
+					<li><a href="login.html" class="button special">Sign Up</a></li>
+					<li><a href="game_modes.html" class="button special">Game Modes</a></li>
+					
+				</ul>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper special">
+				<div class="inner">
+					<header class="major">
+						<h2>Scoreboard</h2>
+					</header>
+
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Player</th>
+											<th>Points</th>
+											<th>Alive</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+							</div>
+
+<div id="id01"></div>
+						<script>
+							var xmlhttp = new XMLHttpRequest();
+							var url = "http://cors.io/?u=http://aws2.bitwisehero.com/get_game_players/7d59d944-b051-4b9c-bf9f-a3fd4c1c541a";
+
+							xmlhttp.onreadystatechange=function() {
+							    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							        myFunction(xmlhttp.responseText);
+							    }
+							}
+							xmlhttp.open("GET", url, true);
+							xmlhttp.send();
+
+							function myFunction(response) {
+							    var arr = JSON.parse(response);
+							    arr.sort(function(a, b) { return (a[2] > b[2] ? -1 : (a[2] < b[2] ? 1 : 0)); });
+							    console.log(arr[1][0]);
+							    var i;
+							    var out = "<table>";
+
+							    for(i = 0; i < arr.length; i++) {
+							        out += "<tr><td>" +
+							        arr[i][0]+
+							        "</td><td>" +
+							        arr[i][2] +
+							        "</td><td>" +
+							        arr[i][3] +
+							        "</td>";
+							    }
+							    out += "</table>";
+							console.log(out);
+
+							document.getElementById("id01").innerHTML = out;
+
+							}
+
+					
+
+
+						</script>
+
+
+
+
+
+
+
+
+
+							
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="http://templated.co/">TEMPLATED</a>.
+				</div>
+
+
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
