@@ -102,7 +102,7 @@ def assassins_kill(uuid, killer, target):
         if user.name == target:
             found_target = True
             target_ref = user
-    if found_killer and found_target:
+    if found_killer and found_target and killer_ref.target == target_ref:
         g.win(killer_ref.id)
         g.kill(target_ref.id)
         return True
