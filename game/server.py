@@ -106,7 +106,7 @@ def assassins_kill(uuid, killer, target):
         g.win(killer_ref.id)
         g.kill(target_ref.id)
         return True
-    else
+    else:
         return False
 
     
