@@ -24,6 +24,7 @@ class Assassins(Game):
     def add_user(self, user):
         u = user.join_game(self)
         self.users.append(u)
+        self.users[-1].alive = True
         self.living.append(u)
         self.living[-1].alive = True
 

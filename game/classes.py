@@ -106,7 +106,6 @@ class Game:
         self.living.append(u)
 
     def remove_user(self, user):
-        user.leave_game()
         self.living.remove(user)
 
     def add_team(self, team):
@@ -119,6 +118,7 @@ class Game:
         for team in self.teams:
             team.leave_game()
         for user in self.users:
-            self.remove_user(user)
+            self.living.remove(user)
+            self.users.remove(user)
             user.leave_game()
         self.state = ENDGAME
