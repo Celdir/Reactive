@@ -117,8 +117,9 @@ class Game:
     def game_over(self):
         for team in self.teams:
             team.leave_game()
-        for user in self.users:
+        for user in self.living:
             self.living.remove(user)
+        for user in self.users:
             self.users.remove(user)
             user.leave_game()
         self.state = ENDGAME
