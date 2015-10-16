@@ -37,7 +37,7 @@ def get_all_games():
         g = games[key]
         users = []
         for u in g.users:
-            users.append((u.name, str(u.id), u.current_score))
+            users.append((u.name, str(u.id), u.current_score, u.alive))
         info.append({
             "uuid" : str(g.id),
             "gamemode" : g.gamemode,
@@ -55,7 +55,7 @@ def get_game(uuid):
         return "[]"
     users = []
     for u in g.users:
-        users.append((u.name, str(u.id), u.current_score))
+        users.append((u.name, str(u.id), u.current_score, u.alive))
     info = {
         "uuid" : str(g.id),
         "gamemode" : g.gamemode,
